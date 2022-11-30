@@ -2,7 +2,6 @@
 using namespace std;
 
 //merge sort
-
 void merge(int arr[], int begin, int end) {
 	int mid = begin + (end - begin) / 2;
 	int left = mid - begin + 1,
@@ -70,25 +69,19 @@ void buble_sort(int n, int arr[]) {
 //insert_sort
 
 void insert_sort(int n, int arr[]) {
-	int sorted_arr[n];
-	for (int i = 0; i < n; i++) {
-		sorted_arr[i] = 0;
-	}
-	sorted_arr[0] = arr[0];
-	for (int i = 1; i < n; i++) {
-		sorted_arr[i] = arr[i];
-		for (int j = i-1; j >=0; j--) {
-			if (sorted_arr[j] > sorted_arr[j+1]) {
-				swap(sorted_arr[j], sorted_arr[j+1]);
-			}
-			else {
-				break;
-			}
-		}
-	}
-	for (int i = 0; i < n; i++) {
-		arr[i] = sorted_arr[i];
-	}
+	int i, key, j;
+    for (i = 1; i < n; i++)
+    {
+        key = arr[i];
+        j = i - 1;
+
+        while (j >= 0 && arr[j] > key)
+        {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
 } 
 
 //quick_sort
@@ -212,8 +205,6 @@ int main() {
 				}
 				break;		
 		}
-	
-	
 	
 		switch(n) {
 			case 1:

@@ -77,12 +77,9 @@ void Try_BB(int k, int n) {
 
 int main() {
     int n;
-    cout << "Nhap so thanh pho ";
-   
-    cin >> n;
+    int option;
     clock_t start, end;
 
-    generateRandomCost(arr, n);    
     for (int i = 1; i<=n; i++) {
         visited[i] = false;
     }
@@ -93,7 +90,27 @@ int main() {
     order[1] = 1;
     visited[1] = true;
     start = clock();
-
+    cout << "Chon phuong thuc nhap du lieu" << endl;
+    cout << "1. Nhap tu ban phim" << endl;
+    cout << "2. Doc file" << endl;
+    cin >> option;
+    switch (option) {
+        case 1:
+            cout << "Nhap so luong phan tu";
+            cin >> n;
+            generateRandomCost(arr, n);    
+            break;
+        case 2:
+            ifstream file; 
+            file.open("data.txt");
+            file >> n;
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    file >> arr[i][j];
+                }
+            }
+            break;
+    }
     cout << "Chon thuat toan" << endl;
     cout << "1. Quay lui" << endl;
     cout << "2. Nhanh can" << endl;
@@ -103,7 +120,7 @@ int main() {
         cout << "Nhap lua chon: ";
         cin >> choice;
         switch(choice) {
-            case 1:     
+            case 1:
                 start = clock();
                 Try(2, n);
                 end = clock();
